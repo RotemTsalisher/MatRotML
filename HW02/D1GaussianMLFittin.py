@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[339]:
+# In[372]:
 
 
 import numpy as np
@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import math
 
 
-# In[340]:
+# In[373]:
 
 
 def calcGaussian(x,mu,sigma,pi = 1):
@@ -25,7 +25,7 @@ def calcGaussian(x,mu,sigma,pi = 1):
     return pi*gaussian
 
 
-# In[341]:
+# In[374]:
 
 
 def plotGaussian(x,gauss,N=1000):
@@ -38,18 +38,18 @@ def plotGaussian(x,gauss,N=1000):
     return
 
 
-# In[342]:
+# In[375]:
 
 
 def calcParams(D):
     muML = np.mean(D)
     sigmaML = np.mean((D-muML)**2)
-    return muML,sigmaML;
+    return muML,np.sqrt(sigmaML);
 
 
 # Q2:
 
-# In[343]:
+# In[376]:
 
 
 def q2(mu,sig):
@@ -58,13 +58,13 @@ def q2(mu,sig):
     gauss = calcGaussian(x,mu,sig)
     plotGaussian(x,gauss,N)
     plt.title("Estimated Gaussian");
-    plt.legend(["mu = %.1f, sigma = %.1f" %(mu,sig)]) 
+    plt.legend(["mu = %.1f, sigma = %.1f" %(mu,sig**2)]) 
     return #np.array([mu,sig])
 
 
 # Q3:
 
-# In[344]:
+# In[377]:
 
 
 def q3(mu,sig, N = 1000):
@@ -72,13 +72,13 @@ def q3(mu,sig, N = 1000):
     gauss_real = calcGaussian(x,mu[1],sig[1])
     plotGaussian(x,gauss_real);
     plt.title("Real Gaussian vs. Estimated Gaussian");
-    plt.legend(labels = ("Est: mu = %.1f, sigma = %.1f" %(mu[0],sig[0]), "Real: mu = %.1f, sigma = %.1f" %(mu[1],sig[1])))
+    plt.legend(labels = ("Est: mu = %.1f, sigma = %.1f" %(mu[0],sig[0]**2), "Real: mu = %.1f, sigma = %.1f" %(mu[1],sig[1]**2)))
     return
 
 
 # Q4:
 
-# In[345]:
+# In[378]:
 
 
 def q4(mu_,sig_,N_ = 30):
@@ -93,7 +93,7 @@ def q4(mu_,sig_,N_ = 30):
 
 # Q5:
 
-# In[346]:
+# In[379]:
 
 
 def q5(mu_,sig_,N_=30):
@@ -118,13 +118,13 @@ def q5(mu_,sig_,N_=30):
 
 # Q6:
 
-# In[347]:
+# In[380]:
 
 
 # implemented in main using q5
 
 
-# In[348]:
+# In[381]:
 
 
 def main():
@@ -141,7 +141,7 @@ def main():
     q2(params[0],params[1]); # plot est gauss
     
     mu = np.array([params[0], 2]);
-    sig = np.array([params[1],1.5]);
+    sig = np.array([params[1],np.sqrt(1.5)]);
     q3(mu,sig); # plot real gauss
     
     # q4 (uses functions of q3,q2 with new data)
@@ -151,18 +151,18 @@ def main():
     # q5
     plt.figure()
     q5(mu[1],sig[1]);
-    plt.legend(["mu = %.1f, sigma = %.1f" %(mu[1],sig[1])]) # real values for sigma and mu
+    plt.legend(["mu = %.1f, sigma = %.1f" %(mu[1],sig[1]**2)]) # real values for sigma and mu
     
     # q6 (based on q5 that take N as an input)
     plt.figure()
     N = 3000
     q5(mu[1],sig[1],N)
-    plt.legend(["mu = %.1f, sigma = %.1f" %(mu[1],sig[1])]) # real values for sigma and mu
+    plt.legend(["mu = %.1f, sigma = %.1f" %(mu[1],sig[1]**2)]) # real values for sigma and mu
     
     return
 
 
-# In[349]:
+# In[382]:
 
 
 main()

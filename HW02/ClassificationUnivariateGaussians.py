@@ -8,7 +8,7 @@
 #  - Names of functions are determined by the question number
 #  - All functions are called in the main function (last function in the notebook)
 
-# In[359]:
+# In[37]:
 
 
 import numpy as np
@@ -16,15 +16,15 @@ import matplotlib.pyplot as plt
 import math
 
 
-# In[360]:
+# In[38]:
 
 
 def calcGaussian(x,mu,sig,pi = 1):
     # Calculate the denominator of the Gaussian distribution
-    denominator = math.sqrt(2 * math.pi * sigma**2)
+    denominator = math.sqrt(2 * math.pi * sig**2)
     
     # Calculate the exponent term
-    exponent = -0.5 * ((x - mu) / sigma) ** 2
+    exponent = -0.5 * ((x - mu) / sig) ** 2
     
     # Calculate the Gaussian distribution
     gaussian = (1 / denominator) * np.exp(exponent)
@@ -32,7 +32,7 @@ def calcGaussian(x,mu,sig,pi = 1):
     return pi*gaussian
 
 
-# In[361]:
+# In[39]:
 
 
 def plotGaussian(x,gauss,N=1000):
@@ -47,15 +47,15 @@ def plotGaussian(x,gauss,N=1000):
 
 # Q2:
 
-# In[362]:
+# In[40]:
 
 
 def q2(mu,sig):
     N = 1000;
     a = 4;
-    x = np.linspace(mu - a*sigma, mu+a*sigma, N); # set the grid
+    x = np.linspace(mu - a*sig, mu+a*sig, N); # set the grid
     
-    gauss = calcGaussian(x,mu,sigma); # calculate the Gaussian values
+    gauss = calcGaussian(x,mu,sig); # calculate the Gaussian values
     plotGaussian(x,gauss,N); # plot the Gaussian
     plt.title("Graph of N(1,1)")
     return
@@ -63,7 +63,7 @@ def q2(mu,sig):
 
 # Q3:
 
-# In[363]:
+# In[41]:
 
 
 def q3(mu,sig,pi):
@@ -85,7 +85,7 @@ def q3(mu,sig,pi):
 
 # Q4:
 
-# In[371]:
+# In[42]:
 
 
 # q4 is q3 with different pi vector:
@@ -94,7 +94,7 @@ def q3(mu,sig,pi):
 
 # Q5:
 
-# In[372]:
+# In[43]:
 
 
 def q5(mu,sig,pi):
@@ -113,7 +113,7 @@ def q5(mu,sig,pi):
     return
 
 
-# In[373]:
+# In[44]:
 
 
 def q6(mu,sig,pi):
@@ -133,7 +133,7 @@ def q6(mu,sig,pi):
 
 # Q7:
 
-# In[374]:
+# In[45]:
 
 
 def q7(mu,sig,pi):
@@ -145,7 +145,7 @@ def q7(mu,sig,pi):
 
 # Q8:
 
-# In[375]:
+# In[46]:
 
 
 def q8(mu,sig,N = 1000):
@@ -160,7 +160,7 @@ def q8(mu,sig,N = 1000):
 
 # Main:
 
-# In[376]:
+# In[47]:
 
 
 def main():
@@ -173,7 +173,7 @@ def main():
     # q3:
     plt.figure()
     mu = np.array([3, 0])
-    sigma = np.array([1, 1])
+    sigma = np.sqrt(np.array([1, 1]))
     pi = np.array([0.5, 0.5])
     q3(mu,sigma,pi);
     
@@ -204,7 +204,7 @@ def main():
     return
 
 
-# In[370]:
+# In[48]:
 
 
 main()
